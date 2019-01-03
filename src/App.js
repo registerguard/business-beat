@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/*
+https://medium.com/@ryan.mcnierney/using-react-google-sheets-as-your-cms-294c02561d59
+
+https://blog.416serg.me/building-an-app-using-google-sheets-api-react-d69681d22ce1
+ */
+
+
 class App extends Component {
   render() {
     return (
