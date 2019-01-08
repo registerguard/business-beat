@@ -22,19 +22,36 @@ class App extends Component {
     Tabletop.init({
       key: '1kOHYujR27_k1KTtXmpgNvvhdPohyQ_RefjN1tCrqONA',
       callback: googleData => {
-        console.log('google sheet data --->', googleData)
+        this.setState({
+          data: googleData
+        })
       },
       simpleSheet: true
     })
   }
 
   render() {
+    console.log('updated state --->', this.state)
+    const { data } = this.state
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React + Google Sheets demo</h1>
         </header>
+        <div id="business-beat-item">
+          {
+            data.map(obj => {
+              return (
+                <div key={obj['Brief description']}>
+                  <p>{obj['Brief description']}</p>
+                  <p>{obj['Which type of item?']}</p>
+                  <img alt="mug" src={obj['Portrait image']} />
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     );
   }
