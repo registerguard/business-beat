@@ -4,9 +4,12 @@ import './App.css';
 import Tabletop from 'tabletop';
 
 /*
+React:
 https://medium.com/@ryan.mcnierney/using-react-google-sheets-as-your-cms-294c02561d59
-
 https://blog.416serg.me/building-an-app-using-google-sheets-api-react-d69681d22ce1
+
+Deploy to S3:
+https://medium.com/@abventures/how-to-build-a-react-website-in-aws-within-15-minutes-9e9c37f85aeb
  */
 
 
