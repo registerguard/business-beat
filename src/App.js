@@ -29,6 +29,7 @@ class App extends Component {
           data: googleData
         })
       },
+      orderby: 'whichtypeofitem',
       simpleSheet: true
     })
   }
@@ -38,18 +39,18 @@ class App extends Component {
     const { data } = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React + Google Sheets demo</h1>
-        </header>
         <div id="business-beat-item">
           {
             data.map(obj => {
+              var ischanged = obj['Which type of item?'];
+              console.log('ischanged --->', ischanged)
               return (
                 <div key={obj['Brief description']}>
-                  <p>{obj['Brief description']}</p>
-                  <p>{obj['Which type of item?']}</p>
-                  <img alt="mug" src={obj['Portrait image']} />
+                  <p>
+                    <b>{obj['Which type of item?']}</b><br />
+                    {obj['Brief description']}
+                  </p>
+                  {/* <img alt="mug" src={obj['Portrait image']} /> */}
                 </div>
               )
             })
