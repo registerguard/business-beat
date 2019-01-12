@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Tabletop from 'tabletop';
 
@@ -44,15 +43,27 @@ class App extends Component {
             data.map(obj => {
               var ischanged = obj['Which type of item?'];
               console.log('ischanged --->', ischanged)
-              return (
-                <div key={obj['Brief description']}>
-                  <p>
-                    <b>{obj['Which type of item?']}</b><br />
-                    {obj['Brief description']}
-                  </p>
-                  {/* <img alt="mug" src={obj['Portrait image']} /> */}
-                </div>
-              )
+
+              if (ischanged !== obj['Which type of item?']) {
+                return (
+                  <div key={obj['Brief description']}>
+                    <p>
+                      <b>{obj['Which type of item?']} </b><br />
+                      {obj['Brief description']}
+                    </p>
+                    {/* <img alt="mug" src={obj['Portrait image']} /> */}
+                  </div>
+                )
+              } else {
+                return (
+                  <div key={obj['Brief description']}>
+                    <p>
+                      {obj['Brief description']}
+                    </p>
+                    {/* <img alt="mug" src={obj['Portrait image']} /> */}
+                  </div>
+                )
+              }
             })
           }
         </div>
