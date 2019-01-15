@@ -43,6 +43,8 @@ class App extends Component {
             data.map(obj => {
               var ischanged = obj['Which type of item?'];
               console.log('ischanged --->', ischanged)
+              console.log('current obj[Which type of item?] --->', obj['Which type of item?'])
+              console.log('   is they equal? --->', ischanged == obj['Which type of item?'])
 
               if (ischanged !== obj['Which type of item?']) {
                 return (
