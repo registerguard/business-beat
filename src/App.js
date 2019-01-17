@@ -36,6 +36,22 @@ class App extends Component {
   render() {
     console.log('updated state --->', this.state)
     const { data } = this.state
+
+    var groupedData = groupBy(data, 'Which type of item?');
+    console.log('groupedData --->', groupedData)
+
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Grouping_objects_by_a_property
+    function groupBy(objectArray, property) {
+      return objectArray.reduce(function (acc, obj){
+        var key = obj[property];
+        if (!acc[key]) {
+          acc[key] = [];
+        }
+        acc[key].push(obj);
+        return acc;
+      }, {});
+    }
+
     return (
       <div className="App">
         <div id="business-beat-item">
@@ -44,7 +60,7 @@ class App extends Component {
               var ischanged = obj['Which type of item?'];
               console.log('ischanged --->', ischanged)
               console.log('current obj[Which type of item?] --->', obj['Which type of item?'])
-              console.log('   is they equal? --->', ischanged == obj['Which type of item?'])
+              console.log('   is they equal? --->', ischanged === obj['Which type of item?'])
 
               if (ischanged !== obj['Which type of item?']) {
                 return (
