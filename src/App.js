@@ -37,9 +37,6 @@ class App extends Component {
     console.log('updated state --->', this.state)
     const { data } = this.state
 
-    var groupedData = groupBy(data, 'Which type of item?');
-    console.log('groupedData --->', groupedData)
-
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Grouping_objects_by_a_property
     function groupBy(objectArray, property) {
       return objectArray.reduce(function (acc, obj){
@@ -52,41 +49,23 @@ class App extends Component {
       }, {});
     }
 
-    return (
-      <div className="App">
-        <div id="business-beat-item">
-          {
-            data.map(obj => {
-              var ischanged = obj['Which type of item?'];
-              console.log('ischanged --->', ischanged)
-              console.log('current obj[Which type of item?] --->', obj['Which type of item?'])
-              console.log('   is they equal? --->', ischanged === obj['Which type of item?'])
+    var groupedData = groupBy(data, 'Which type of item?');
+    console.log('data --->', data)
+    console.log('groupedData --->', groupedData)
 
-              if (ischanged !== obj['Which type of item?']) {
-                return (
-                  <div key={obj['Brief description']}>
-                    <p>
-                      <b>{obj['Which type of item?']} </b><br />
-                      {obj['Brief description']}
-                    </p>
-                    {/* <img alt="mug" src={obj['Portrait image']} /> */}
-                  </div>
-                )
-              } else {
-                return (
-                  <div key={obj['Brief description']}>
-                    <p>
-                      {obj['Brief description']}
-                    </p>
-                    {/* <img alt="mug" src={obj['Portrait image']} /> */}
-                  </div>
-                )
-              }
-            })
-          }
-        </div>
-      </div>
-    );
+    return 0;
+    // return (
+    //   {
+    //     <div className="App">
+    //       <div id="business-beat-item">
+    //         console.log(Object.keys(groupedData))
+    //           for (let i=0; i<groupedData.length; i++) {
+    //             console.log(groupedData[i]);
+    //           }
+    //       </div>
+    //     </div>
+    //   }
+    // );
   }
 }
 
