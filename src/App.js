@@ -40,32 +40,39 @@ class App extends Component {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Grouping_objects_by_a_property
     function groupBy(objectArray, property) {
       return objectArray.reduce(function (acc, obj){
-        var key = obj[property];
+        var key = obj[property]
         if (!acc[key]) {
-          acc[key] = [];
+          acc[key] = []
         }
-        acc[key].push(obj);
-        return acc;
-      }, {});
+        acc[key].push(obj)
+        return acc
+      }, {})
     }
 
-    var groupedData = groupBy(data, 'Which type of item?');
+    var groupedData = groupBy(data, 'Which type of item?')
     console.log('data --->', data)
     console.log('groupedData --->', groupedData)
 
-    return 0;
-    // return (
-    //   {
-    //     <div className="App">
-    //       <div id="business-beat-item">
-    //         console.log(Object.keys(groupedData))
-    //           for (let i=0; i<groupedData.length; i++) {
-    //             console.log(groupedData[i]);
-    //           }
-    //       </div>
-    //     </div>
-    //   }
-    // );
+    let groupedDataKeys = Object.keys(groupedData);
+    let groupedDataArray = Object.entries(groupedData);
+    console.log('groupedDataKeys --->', groupedDataKeys);
+    console.log('groupedDataArray --->', groupedDataArray);
+    console.log('grouupedDataArray length --->', groupedDataArray.length)
+
+    // May still need to look at this: https://kolosek.com/react-jsx-loops/
+    return (
+      <div id="booyah">
+        {
+          groupedDataArray.map(obj => {
+            return (
+              <div id={obj[0]}>
+                <b>{ obj[0] }</b>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
   }
 }
 
