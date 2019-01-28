@@ -33,8 +33,22 @@ class App extends Component {
     })
   }
 
+  // https://blog.cloudboost.io/for-loops-in-react-render-no-you-didnt-6c9f4aa73778
+  createOutput = (groupedDataArray) => {
+    console.log('groupedDataArray at top of createOutput --->', groupedDataArray)
+    let Output = []
+
+    for (let i = 0; i < groupedDataArray.length; i++) {
+      let children = []
+      for (let j = 0; j < groupedDataArray[i][1].length; j++) {
+        children.push(<p>{groupedDataArray[i][1][j]['Brief description']}</p>)
+      }
+      Output.push(<b>{children}</b>)
+    }
+    return Output
+  }
+
   render() {
-    console.log('updated state --->', this.state)
     const { data } = this.state
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Grouping_objects_by_a_property
@@ -49,28 +63,16 @@ class App extends Component {
       }, {})
     }
 
+    // Group data by column ('Which type of item?')
     var groupedData = groupBy(data, 'Which type of item?')
-    console.log('data --->', data)
-    console.log('groupedData --->', groupedData)
 
-    let groupedDataKeys = Object.keys(groupedData);
-    let groupedDataArray = Object.entries(groupedData);
-    console.log('groupedDataKeys --->', groupedDataKeys);
-    console.log('groupedDataArray --->', groupedDataArray);
-    console.log('grouupedDataArray length --->', groupedDataArray.length)
+    // Turn Object into a keyed Array
+    let groupedDataArray = Object.entries(groupedData); 
 
     // May still need to look at this: https://kolosek.com/react-jsx-loops/
-    return (
-      <div id="booyah">
-        {
-          groupedDataArray.map(obj => {
-            return (
-              <div id={obj[0]}>
-                <b>{ obj[0] }</b>
-              </div>
-            )
-          })
-        }
+    return(
+      <div>
+        {this.createOutput(groupedDataArray)}
       </div>
     )
   }
