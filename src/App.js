@@ -33,21 +33,6 @@ class App extends Component {
     })
   }
 
-  // https://blog.cloudboost.io/for-loops-in-react-render-no-you-didnt-6c9f4aa73778
-  createOutput = (groupedDataArray) => {
-    console.log('groupedDataArray at top of createOutput --->', groupedDataArray)
-    let Output = []
-
-    for (let i = 0; i < groupedDataArray.length; i++) {
-      let children = []
-      for (let j = 0; j < groupedDataArray[i][1].length; j++) {
-        children.push(<p>{groupedDataArray[i][1][j]['Brief description']}</p>)
-      }
-      Output.push(<b>{children}</b>)
-    }
-    return Output
-  }
-
   render() {
     const { data } = this.state
 
@@ -67,12 +52,28 @@ class App extends Component {
     var groupedData = groupBy(data, 'Which type of item?')
 
     // Turn Object into a keyed Array
-    let groupedDataArray = Object.entries(groupedData); 
+    let groupedDataArray = Object.entries(groupedData);
+    console.log(groupedDataArray)
 
-    // May still need to look at this: https://kolosek.com/react-jsx-loops/
+    // https://stackoverflow.com/questions/43756283/how-to-render-nested-array-elements-in-react
+    let categoryHeadline = groupedDataArray.map((category, index) => {
+      return (
+        <div key={index}>
+          <h1>{category[0]}</h1>
+          {
+            category[1].map((description, index) => {
+              return (
+              <p key={index}>{description['Brief description']}</p> 
+              )
+            })
+          }
+        </div>
+      )
+      })
+
     return(
       <div>
-        {this.createOutput(groupedDataArray)}
+        {categoryHeadline}
       </div>
     )
   }
